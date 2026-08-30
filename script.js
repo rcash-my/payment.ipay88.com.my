@@ -71,7 +71,7 @@ function validatePhone(input) {
     /*
      * Peraturan baharu:
      * - Mesti bermula dengan angka 1
-     - - Boleh jadi 9 digit (cth: 123456789)
+     * - - Boleh jadi 9 digit (cth: 123456789)
      * - ATAU 10 digit (cth: 1234567890)
      */
     const isValid = /^[1][0-9]{8,9}$/.test(value);
@@ -455,7 +455,7 @@ function checkBankSelection() {
     
     if (selectBank !== "") {
         btnFinalNext.disabled = false;
-        btnFinalNext.className = "flex-1 bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3.5 rounded-xl text-xs text-center shadow-xs cursor-pointer transition duration-200 hover:from-blue-500 hover:to-blue-700";
+        btnFinalNext.className = "flex-1 bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3.5 rounded-xl text-xs text-center shadow-xs cursor-pointer transition duration-200 hov[...]
     }
 }
 
@@ -515,14 +515,14 @@ function handleFileSelected() {
         fileNameDisplay.innerText = "Fail dipilih: " + file.name;
         
         btnSubmitForm.disabled = false;
-        btnSubmitForm.className = "flex-1 bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3.5 rounded-xl text-xs text-center shadow-md cursor-pointer transition duration-200 hover:from-blue-500 hover:to-blue-700";
+        btnSubmitForm.className = "flex-1 bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3.5 rounded-xl text-xs text-center shadow-md cursor-pointer transition duration-200 ho[...]
     }
 }
 
 function finalSubmission() {
     clearInterval(timerInstance);
     
-    const susunanAyat = "Terima kasih <span class='font-extrabold text-slate-900'>" + namaPelangganGlobal + "</span> kerana telah berjaya membuat bayaran balik pinjaman anda di <span class='text-blue-400 font-bold'>R-Cash</span>. Pembayaran anda sedang diproses dan akan disemak dalam masa <span class='font-bold'>24 jam</span>. Anda akan menerima notifikasi melalui SMS atau email apabila pembayaran telah disahkan.";
+    const susunanAyat = "Terima kasih <span class='font-extrabold text-slate-900'>" + namaPelangganGlobal + "</span> kerana telah berjaya membuat bayaran balik pinjaman anda di <span class='text-[...]
     document.getElementById('thanksMessage').innerHTML = susunanAyat;
 
     document.getElementById('qrPage').classList.add('hidden');
@@ -556,13 +556,19 @@ function handleGoogleLogin(response) {
         closeSidebar();
     }
 
-    // 4. Sembunyikan ruangan butang Google Sign In
-    const googleSection = document.getElementById("googleSignInSection");
-    if (googleSection) {
-        googleSection.classList.add("hidden");
+    // 4. Sembunyikan ruangan butang Google Sign In di SIDEBAR
+    const googleSectionSidebar = document.getElementById("googleSignInSection");
+    if (googleSectionSidebar) {
+        googleSectionSidebar.classList.add("hidden");
     }
 
-    // 5. Tunjukkan skrin Loading (Spinner Log Masuk)
+    // 5. Sembunyikan ruangan butang Google Sign In di MAIN PAGE
+    const googleSectionMain = document.querySelector("main #googleSignInSection");
+    if (googleSectionMain) {
+        googleSectionMain.classList.add("hidden");
+    }
+
+    // 6. Tunjukkan skrin Loading (Spinner Log Masuk)
     const spinnerOverlay = document.getElementById("loginSpinnerOverlay");
     if (spinnerOverlay) {
         spinnerOverlay.classList.remove("hidden");
@@ -667,16 +673,19 @@ function parseJwt(token) {
 document.addEventListener("DOMContentLoaded", function () {
     const loginStatus = localStorage.getItem("googleLogin");
     const btnPay = document.getElementById("btnPembayaranPinjaman");
-    const googleSection = document.getElementById("googleSignInSection");
+    const googleSectionSidebar = document.getElementById("googleSignInSection");
+    const googleSectionMain = document.querySelector("main #googleSignInSection");
 
     if (loginStatus === "success") {
         // Jika SUDAH log masuk
-        if (googleSection) googleSection.classList.add("hidden");
+        if (googleSectionSidebar) googleSectionSidebar.classList.add("hidden");
+        if (googleSectionMain) googleSectionMain.classList.add("hidden");
         if (btnPay) btnPay.classList.remove("hidden");
     } else {
         // Jika BELUM log masuk (Halaman Pertama)
         if (btnPay) btnPay.classList.add("hidden");
-        if (googleSection) googleSection.classList.remove("hidden");
+        if (googleSectionSidebar) googleSectionSidebar.classList.remove("hidden");
+        if (googleSectionMain) googleSectionMain.classList.remove("hidden");
     }
 });
     /* =========================================================
@@ -1009,13 +1018,13 @@ function closeEmailPopup() {
 
 
 // =========================================================
-// COPY R-CASH EMAIL
+// COPY R-CASH EMAIL (PERBAIKAN: Nama fungsi yang betul)
 // =========================================================
 
-async function copyR-CashEmail() {
+async function copyDuitjomEmail() {
 
     const emailElement =
-        document.getElementById('ask-online.rcashmy@hotmail.com');
+        document.getElementById('r-CashEmail');
 
     const copyIcon =
         document.getElementById('copyIcon');
@@ -1237,4 +1246,3 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error('Terdapat masalah:', error));
     }
 });
-
