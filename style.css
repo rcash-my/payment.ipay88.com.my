@@ -1313,36 +1313,58 @@ button:focus, a:focus, input:focus, div:focus {
     object-fit: cover;
 }
 
-html,
-body {
+/* =====================================================
+   FIX — FOOTER LEGAL LINKS
+===================================================== */
+
+.legal-footer {
     width: 100%;
     max-width: 100%;
+    margin: auto 0 0 0;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    overflow: hidden;
+}
+
+.legal-footer p {
     margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-*,
-*::before,
-*::after {
+    width: 100%;
     box-sizing: border-box;
 }
 
-.admin-glass-overlay,
-.r-cash-news,
-.news-slider,
-.news-track,
-.news-item,
-footer {
+.legal-footer-links {
+    width: 100%;
     max-width: 100%;
+    margin-top: 12px;
+    padding: 0;
     box-sizing: border-box;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.legal-footer-links a {
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.legal-footer-links span {
+    flex-shrink: 0;
 }
 
 @media (max-width: 650px) {
-    .admin-glass-overlay,
-    .r-cash-news {
-        width: calc(100% - 20px);
-        margin-left: auto;
-        margin-right: auto;
+    .legal-footer {
+        width: 100%;
+        padding: 22px 12px;
+    }
+
+    .legal-footer-links {
+        gap: 6px;
     }
 }
