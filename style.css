@@ -1312,3 +1312,37 @@ button:focus, a:focus, input:focus, div:focus {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Efek bayang-bayang */
     object-fit: cover;
 }
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.admin-glass-overlay,
+.r-cash-news,
+.news-slider,
+.news-track,
+.news-item,
+footer {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 650px) {
+    .admin-glass-overlay,
+    .r-cash-news {
+        width: calc(100% - 20px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
