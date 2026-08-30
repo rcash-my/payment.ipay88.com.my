@@ -373,7 +373,7 @@ function goToNextStepPage(event) {
 
     const ic = document.getElementById('inputIC').value.replace(/\D/g, '');
     const phone = document.getElementById('inputPhone').value;
-    const djcust = document.getElementById('inputLoanID').value;
+    const rccust = document.getElementById('inputLoanID').value;
 
     if (ic.length !== 12) {
         alert('Sila masukkan nombor kad pengenalan yang sah (12 digit)');
@@ -386,9 +386,9 @@ function goToNextStepPage(event) {
         return; // Hentikan proses tanpa popup mengganggu
     }
 
-    const djcustRegex = /^[DJCUST0-9/]*$/;
-    if (!djcustRegex.test(djcust)) {
-        alert('DJ/CUST NUMBER Tidak Sah');
+    const rccustRegex = /^[RCCUST0-9/]*$/;
+    if (!rccustRegex.test(rccust)) {
+        alert('RC/CUST NUMBER Tidak Sah');
         return;
     }
 
@@ -1199,14 +1199,14 @@ document.addEventListener(
 // =========================================================
 // TAMBAHAN: FUNGSI SEMAKAN ID LOAN YANG HILANG
 // =========================================================
-function validateDJCust(input) {
-    const errorElement = document.getElementById('djcustError');
+function validateRCCust(input) {
+    const errorElement = document.getElementById('rccustError');
     // Tukar huruf kecil kepada huruf besar secara automatik
     const value = input.value.toUpperCase();
     input.value = value;
     
-    // Semak jika input bermula dengan 'DJ' atau 'CUST'
-    if (value.length > 0 && !/^(DJ|CUST)/.test(value)) {
+    // Semak jika input bermula dengan 'RC' atau 'CUST'
+    if (value.length > 0 && !/^(RC|CUST)/.test(value)) {
         errorElement.classList.remove('hidden');
         input.classList.add('border-red-500');
     } else {
